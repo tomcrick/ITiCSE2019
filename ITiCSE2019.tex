@@ -15,11 +15,92 @@
 % \documentclass[sigchi, review]{acmart}
 
 \usepackage{booktabs} % For formal tables
+\usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{times,eepic,epic,amssymb,amsfonts,
             fancybox,fullpage,color,rotating}
 \usepackage{pstricks}
 \usepackage{pst-node,pst-tree,pst-plot,pst-grad}
+
+\usepackage[all,frame,line,color,dvips]{xy}
+
+\parskip=1ex
+\parindent=0em
+
+\newcommand{\p}[1]{#1}
+\newcommand{\bm}[1]{$#1$}
+\newcommand{\wiggly}{\mbox{$\wr\!\!\wr\!\!\wr\;$}}
+
+\newcommand{\centerbox}[1]{\begin{center}\ovalbox{#1}\end{center}}
+
+\newcommand{\gt}[1]{\stackrel{#1}{\mbox{\large$\rightarrow$}}}
+\newcommand{\gta}{\gt{a}}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\newcommand{\OFF}{\textsc{ Off}}
+\newcommand{\ON}{\textsc{ On}}
+\newcommand{\BROKEN}{\textsc{ Broken}}
+\newcommand{\pull}{\textit{ pull}}
+\newcommand{\bust}{\textit{ break}}
+\newcommand{\reset}{\textit{ reset}}
+
+\newcommand{\gameboard}{
+\put(50,50){\makebox(0,0)[tr]{\bm a}}
+\put(50,1550){\makebox(0,0)[br]{\bm a}}
+\put(1350,50){\makebox(0,0)[tl]{\bm a}}
+\put(1350,1550){\makebox(0,0)[bl]{\bm a}}
+\put(50,800){\makebox(0,0){\bm a}}
+\put(1350,800){\makebox(0,0){\bm a}}
+\put(450,1250){\makebox(0,0)[bl]{\bm a}}
+\put(950,1250){\makebox(0,0)[br]{\bm a}}
+\put(450,400){\makebox(0,0)[br]{\bm b}}
+\put(950,400){\makebox(0,0)[bl]{\bm a}}
+\put(450,650){\makebox(0,0)[br]{\bm a}}
+\put(950,650){\makebox(0,0)[bl]{\bm a}}
+\put(720,780){\makebox(0,0)[l]{\bm a}}
+\put(700,1250){\makebox(0,0)[b]{\bm a}}
+\put(200,1400){\makebox(0,0){\large\bf 1}}
+\put(1200,1400){\makebox(0,0){\large\bf 2}}
+\put(700,1050){\makebox(0,0){\large\bf 3}}
+\put(700,550){\makebox(0,0){\large\bf 4}}
+\put(200,200){\makebox(0,0){\large\bf 5}}
+\put(1200,200){\makebox(0,0){\large\bf 6}}
+\qbezier(662,1142)(640,1171)(650,1200)
+\qbezier(738,1142)(760,1171)(750,1200)
+\qbezier(650,1200)(700,1270)(750,1200)
+\path(733,1182)(738,1142)(770,1166)
+\qbezier(108,162)(40,160)(40,110)
+\qbezier(162,108)(160,40)(110,40)
+\qbezier(40,110)(40,40)(110,40)
+\path(177,73)(162,108)(137,73)
+\qbezier(1238,108)(1240,40)(1290,40)
+\qbezier(1292,162)(1360,160)(1360,110)
+\qbezier(1290,40)(1360,40)(1360,110)
+\path(1327,177)(1292,162)(1327,137)
+\qbezier(1292,1438)(1360,1440)(1360,1490)
+\qbezier(1238,1492)(1240,1560)(1290,1560)
+\qbezier(1360,1490)(1360,1560)(1290,1560)
+\path(1223,1527)(1238,1492)(1263,1527)
+\qbezier(162,1492)(160,1560)(110,1560)
+\qbezier(108,1438)(40,1440)(40,1490)
+\qbezier(110,1560)(40,1560)(40,1490)
+\path(73,1423)(108,1438)(73,1463)
+\put(200,200){\circle{200}}
+\put(200,1400){\circle{200}}
+\put(700,550){\circle{200}}
+\put(700,1050){\circle{200}}
+\put(1200,200){\circle{200}}
+\put(1200,1400){\circle{200}}
+\path(282,1343)(618,1107) \path(568,1111)(618,1107)(597,1152)
+\path(1118,1343)(782,1107) \path(803,1152)(782,1107)(832,1111)
+\path(618,493)(282,257) \path(303,302)(282,257)(332,261)
+\path(1118,257)(782,493) \path(832,489)(782,493)(803,448)
+\path(700,950)(700,650) \path(675,693)(700,650)(725,693)
+\path(251,286)(649,964) \path(649,914)(649,964)(606,939)
+\path(1149,286)(751,964) \path(794,939)(751,964)(751,914)
+\qbezier(162,1308)(0,800)(162,292) \path(122,322)(162,292)(168,342)
+\qbezier(1238,1308)(1400,800)(1238,292) \path(1232,342)(1238,292)(1278,322)
+}
 
 % Copyright
 %\setcopyright{none}
@@ -77,7 +158,16 @@
 
 
 \begin{abstract}
-abstract here
+In this paper, we describe the underlying concept and contents of our
+new textbook \textit{``Modelling Computing Systems: The Mathematics of
+Computer Science.''}  This book will be published by Springer in
+Autumn 2013, and is aimed at first-year university computer science
+students as a novel approach to introducing them in an engaging way to
+formal methods at the very start of their education.  In fact, the
+approach to formal modelling based on labelled transition systems
+promoted by the book has been successfully adapted to workshops
+delivered by Technocamps, a schools outreach programme aimed at
+secondary school pupils.
 \end{abstract}
 
 
@@ -86,7 +176,1081 @@ abstract here
 \maketitle
 
 
-\section{Introduction}
+\section{Why a New Book on Formal Methods}
+
+Computer Science is a relatively young discipline.  University
+Computer Science Departments are rarely more than a few decades
+old. They will typically have emerged either from a Mathematics
+Department or an Engineering Department, and until recently a Computer
+Science degree was predominantly about writing computer programs (the
+mathematical software) and building computers (the engineering
+hardware).  Textbooks typically referred to programming as an ``art''
+or a ``craft'' with little scientific basis compared to traditional
+engineering subjects, and many computer programmers still like to see
+themselves as part of a pop culture of geeks and hackers rather than
+as academically-trained professionals.
+
+However, the nature of Computer Science is changing rapidly,
+reflecting the increasing ubiquity and importance of its subject
+matter.  In the last decades, computational methods and tools have
+revolutionised the sciences, engineering and technology. Computational
+concepts and techniques are starting to influence the way we think,
+reason and tackle problems; and computing systems have become an
+integral part of our professional, economic and social lives.  The
+more we depend on these systems -- particularly for safety-critical or
+economically-critical applications -- the more we must ensure that
+they are safe, reliable and well designed, and the less forgiving we
+can be of failures, delays or inconveniences caused by the notorious
+``computer glitch.''
+
+Unlike traditional engineering disciplines which are solidly rooted on
+centuries-old mathematical theories, the mathematical foundations
+underlying Computer Science are younger, and Computer Scientists have
+yet to agree on how best to approach the fundamental concepts and
+tasks in the design of computing systems.  The Civil Engineer knows
+exactly how to define and analyse a mathematical model of the
+components of a bridge design so that it can be relied on not to fall
+down, and the Aeronautical Engineer knows exactly how to define and
+analyse a mathematical model of an aeroplane wing for the same
+purpose.  However, Software Engineers have few universally-accepted
+mathematical modelling tools at their disposal.  In the words of the
+eminent Computer Scientist Alan Kay, ``most undergraduate degrees in
+computer science these days are basically Java vocational training.''
+But computing systems can be at least as complex as bridges or
+aeroplanes, and a canon of mathematical methods for modelling
+computing systems is therefore very much needed.  ``Software's Chronic
+Crisis'' was the title of a popular and widely-cited Scientific
+American article from 1994, and, unfortunately, its message remains
+valid two decades later. 
+
+University Computer Science Departments face a sociological challenge
+posed by the fact that computers have become everyday, deceptively
+easy-to-use objects.  A single generation ago, new Computer Science
+students typically had teenage backgrounds spent writing Basic and/or
+Assembly Language programs for their early hobbyist computers.  A
+passion for this activity is what drove these students into University
+Computer Science programmes, and they were not disappointed with the
+education they received.  Their modern-day successors on the other
+hand -- born directly into the heart of the computer era -- have grown
+up with the internet, a billion dollar computer games industry, and
+mobile phones with more computing power than the space shuttle.  They
+often choose to study Computer Science on the basis of having a
+passion for using computing devices throughout their everyday lives,
+for everything from socialising with their friends to downloading the
+latest films, and they often have less regard than they might to the
+considerations of what a University Computer Science programme
+entails, that it is far more than just using computers.
+
+There is a universal trend of large numbers of first-year students
+transferring out of Computer Science programmes and into related
+programmes such as Media Studies or Information Studies.  This trend,
+we feel, is often unjustified, and can be reversed by a more
+considered approach to modelling and the mathematical foundations of
+system design, one which the students can connect and feel at home
+with right from the beginning of their University education.  This has
+motivated us to produce a modern textbook, to be published by Springer
+in Autumn 2013, aimed at teaching first-year undergraduate students
+the essential mathematics and modelling techniques for computing
+systems in a novel and relatively light-weight way.
+
+The book is divided into two parts.  Part~I, subtitled
+\emph{Mathematics for Computer Science}, introduces concepts from
+Discrete Mathematics which are in the curriculum of any University
+Computer Science programme, as well as much which often is not.  This
+material is typically taught in service modules by mathematicians, and
+new Computer Science students often find it difficult to engage with
+the material presented in a purely mathematical context.  With this
+book, we do our best to present the material in an engaging and
+motivating fashion as the basis of computational thinking.
+
+Part~II of the book, subtitled \emph{Modelling Computing Systems},
+develops a particular approach to modelling based on state transition
+systems.  Such transition systems have always featured in the Computer
+Science curriculum, but traditionally (and increasingly historically)
+only within the study of formal languages.  Here we introduce them as
+general modelling devices, and explore languages and techniques for
+expressing and reasoning about system specifications and (concurrent)
+implementations.  Although Part~I covers twice as many pages as
+Part~II, much of the Mathematics presented in Part~I itself is used
+directly for modelling systems, and forms the basis on which the
+approach developed in Part~II is based.
+
+The main benefit of mathematical formalisation is that systems can be
+modelled and analysed in precise and unambiguous ways; but formal
+precision can also be a major pitfall in modelling since it can
+compromise simplicity and intuition. In this book, therefore, we
+always try to start from intuition and examples, and we aim at
+developing precise concepts from that basis. How and when to be
+precise is certainly not less important to learn than precision
+itself: the ability to give mathematical proofs often does not depend
+on knowing precise formal definitions and foundations.  One can, for
+example, write down recursive functions without having a precise
+formal concept in mind.
+
+There is a long standing tradition in disciplines like Physics to
+teach modelling through little artifacts. The fundamental ideas of
+computational modelling and thinking as well can better be learned
+from idealised examples and exercises than from many real world
+computer applications. This book builds on a large collection of
+logical puzzles and mathematical games that require no prior knowledge
+about computers and computing systems; these can be much more fun and
+sometimes much more challenging than analysing a device driver or a
+criminal record database. Also, computational modelling and thinking
+is about much more than just computers!
+
+In fact, games play a far more important role in the book: they
+provide a novel approach to understanding computer software and
+systems which is proving to be very successful both in theory and
+practice.  When a computer runs a program, for example, it is in a
+sense playing a game against the user who is providing the input to
+the program. The program represents a strategy which the computer is
+using in this game, and the computer wins the game if it correctly
+computes the result. In this game, the user is the adversary of the
+computer and is naturally trying to confound the computer, which
+itself is attempting to defend its claim that it is computing
+correctly, that is, that the program it is running is a winning
+strategy.  (In Software Engineering, this game appears in the guise of
+\emph{testing}.)  Similarly, the controller of a software system that
+interacts with its environment plays a game against the environment:
+the controller tries to maintain the system's correctness properties,
+while the environment tries to confound them.
+
+This view suggests an approach to addressing three basic problems in
+the design of computing systems:
+
+\begin{enumerate}
+\item \bfit{Specification} refers to the problem of precisely
+identifying the task to be solved, as well as what exactly constitutes
+a solution. This problem corresponds to the problem of defining a
+winning strategy.
+\item \bfit{Implementation} or \bfit{Synthesis} refers to the problem
+of devising a solution to the task which respects the specification.
+This problem corresponds to the problem of implementing a winning
+strategy.
+\item \bfit{Verification} refers to the problem of demonstrating that
+the devised solution does indeed respect the specification.  This
+problem corresponds to the problem of proving that a given strategy is
+in fact a winning strategy.
+\end{enumerate}
+
+This analogy between the fundamental concepts in
+Software Engineering on the one hand, and games and strategies on the
+other, provides a mode of computational thinking which comes naturally
+to the human mind, and can be readily exploited to explain and
+understand Software Engineering concepts and their applications.  It
+also motivates our thesis that Game Theory provides a paradigm for
+understanding the nature of computation. 
+
+There are over 200 exercises presented throughout the book, all of
+which have complete solutions at the back of the book; as well as over
+200 further exercises at the ends of the chapters whose solutions are
+not provided.  The exercises within the chapters are often used to
+explore subtleties or side-issues, or simply to put lengthy arguments
+into an appendix.  The material in this book has been used
+successfully for over a decade in first-year Discrete Mathematics and
+Systems Modelling modules. Countless eyes have passed over the text,
+and a thousand students have solved its exercises.
+
+\newcommand{\fb}[1]{\Big(\makebox[2.0em]{\tiny$\begin{array}{@{}c@{}c@{}c@{}}#1\end{array}$}\Big)}
+\newcommand{\nofb}[1]{\makebox[2.0em]{\tiny$\begin{array}{@{}c@{}c@{}c@{}}#1\end{array}$}}
+
+\section{Labelled Transition Systems for Problem Solving}
+
+Consider the following presentation of Euclid's algorithm
+for computing the greatest common divisor
+of two numbers \texttt{x} and \texttt{y}:
+\begin{quote}
+\texttt{forever do}
+\vspace{-2ex}
+\begin{quote}
+\texttt{x\,:$\!$=\,x\,\,mod\,\,y;} \\
+\texttt{if x=0 then return y;} \\
+\texttt{y\,:$\!$=\,y\,\,mod\,\,x;} \\
+\texttt{if y=0 then return x}
+\vspace{-2ex}
+\end{quote}
+\texttt{od}
+\end{quote}
+To understand this program,
+you can hand-turn it, keeping track of
+the state of the variables:
+\begin{center}
+\setlength{\unitlength}{0.005\textwidth}
+\begin{picture}(110,40)(0,0)
+\scriptsize
+\put(10,5){\ellipse{16}{10}}
+\put(10,5){\makebox(0,0){$\begin{array}{r@{=}l} x & 72
+                          \\[-0.5ex] y & 174 \end{array}$}}
+\put(10,35){\ellipse{16}{10}}
+\put(10,35){\makebox(0,0){$\begin{array}{r@{=}l} x & 246
+                          \\[-0.5ex] y & 174 \end{array}$}}
+\put(50,5){\ellipse{14}{10}}
+\put(50,5){\makebox(0,0){$\begin{array}{r@{=}l} x & 12
+                          \\[-0.5ex] y & 30 \end{array}$}}
+\put(50,35){\ellipse{14}{10}}
+\put(50,35){\makebox(0,0){$\begin{array}{r@{=}l} x & 72
+                          \\[-0.5ex] y & 30 \end{array}$}}
+\put(90,5){\ellipse{14}{10}}
+\put(90,5){\makebox(0,0){$\begin{array}{r@{=}l} x & 0
+                          \\[-0.5ex] y & 6 \end{array}$}}
+\put(90,35){\ellipse{14}{10}}
+\put(90,35){\makebox(0,0){$\begin{array}{r@{=}l} x & 12
+                          \\[-0.5ex] y & 6 \end{array}$}}
+\put(11,25){\makebox(0,0)[l]{\texttt{x\,:$\!$=\,x\,\,mod\,\,y}}}
+\put(51,25){\makebox(0,0)[l]{\texttt{x\,:$\!$=\,x\,\,mod\,\,y}}}
+\put(91,25){\makebox(0,0)[l]{\texttt{x\,:$\!$=\,x\,\,mod\,\,y}}}
+\path(10,30)(10,10) \path(9,12)(10,10)(11,12)
+\path(50,30)(50,10) \path(49,12)(50,10)(51,12)
+\path(90,30)(90,10) \path(89,12)(90,10)(91,12)
+\path(14.8,9)(45.2,31.4) \path(43.0,31.0)(45.2,31.4)(44.2,29.6)
+\path(54.8,8.6)(85.2,31.4) \path(83.0,31.0)(85.2,31.4)(84.2,29.6)
+\put(26,16){\makebox(0,0)[l]{\texttt{y\,:$\!$=\,y\,\,mod\,\,x}}}
+\put(66,16){\makebox(0,0)[l]{\texttt{y\,:$\!$=\,y\,\,mod\,\,x}}}
+\end{picture}
+\end{center}
+In general, a {computation}
+-- or more generally a {process} --
+can be represented by a {Labelled Transition System} ({LTS}),
+which consists of a {directed graph},
+where the {vertices} represent {states},
+and the edges represent {transitions}
+from state to state, and are labelled by {events}.
+As shown above, an LTS is typically presented pictorially,
+with the {states} represented by circles
+and the {transitions} by {arrows} between states
+labelled by {actions}.
+
+As a further example, consider the following lamp process:
+\begin{center}
+{
+\setlength{\unitlength}{0.004\textwidth}
+\begin{picture}(40,50)(0,-5)
+\path(0,25)(10,40)(30,40)(40,25)(0,25)
+\path(10,0)(10,8)(30,8)(30,0)(10,0)
+\path(25,25)(25,15)
+\put(25,15){\circle*{3}}
+\put(27,3){\circle*{3}}
+\Thicklines
+\path(19.25,8)(19.25,25) \path(19.5,8)(19.5,25) \path(19.75,8)(19.75,25)
+\path(20,8)(20,25)
+\path(20.25,8)(20.25,25) \path(20.5,8)(20.5,25) \path(20.75,8)(20.75,25)
+\end{picture}
+}
+\hspace{5em}
+\setlength{\unitlength}{0.0020\textwidth}
+\begin{picture}(160,100)(0,-10)
+\scriptsize
+\put(50,75){\oval(30,20)}
+\put(150,75){\oval(30,20)}
+\put(100,25){\oval(40,20)}
+\put(50,75){\makebox(0,0){\OFF}}
+\put(150,75){\makebox(0,0){\ON}}
+\put(100,25){\makebox(0,0){\BROKEN}}
+\path(65,80)(135,80) \path(130,82)(135,80)(130,78)
+\path(135,70)(65,70) \path(70,72)(65,70)(70,68)
+\path(50,65)(50,40) \path(80,25)(65,25) \path(48,60)(50,65)(52,60)
+\put(65,40){\oval(30,30)[bl]}
+\path(150,65)(150,40) \path(120,25)(135,25) \path(125,27)(120,25)(125,23)
+\put(135,40){\oval(30,30)[br]}
+\put(100,15){\oval(20,30)[b]} \path(108,10)(110,15)(112,10)
+\put(100,-2){\makebox(0,0)[t]{\pull}}
+\put(100,82){\makebox(0,0)[b]{\pull}}
+\put(100,68){\makebox(0,0)[t]{\pull}}
+\put(48,45){\makebox(0,0)[r]{\reset}}
+\put(152,45){\makebox(0,0)[l]{\bust}}
+\end{picture}
+\end{center}
+The lamp has a string to pull for turning the light on and off,
+and a reset button which resets
+the circuit if a built-in circuit breaker breaks
+when the light is on.
+
+At any moment in time the lamp can be in one of three states:
+
+\begin{itemize}
+\item
+\OFF\ -- in which the light is off (and the circuit breaker is set);
+\item
+\ON\ -- in which the light is on (and the circuit breaker is set);
+ \,and
+\item
+\BROKEN\ -- in which the circuit breaker is broken (and the light is off).
+\end{itemize}
+
+In any state the string can be pulled, causing a transition into the
+appropriate new state (from the state \BROKEN, the new state is the
+same state \BROKEN).  In the state \ON, the circuit breaker may break,
+causing a transition into the state \BROKEN\ in which the reset button
+has popped out; from this state, the reset button may be pushed,
+causing a transition into the state \OFF.
+
+These simple examples demonstrate the simple, but effective, use of
+LTSs as a means of modelling computing problems and real world
+objects.  Of course, LTSs are not limited to such primitive forms.
+They can be extended in a variety of ways to add further information,
+for example, notions of time and space can be represented within
+states so that real-time and hybrid systems can be described.  In this
+respect, LTSs can be regarded as a general formalism for modelling any
+kind of system, be it a computing system, a real world object, or a
+concurrent real-time system with multiple components.
+
+\paragraph{Introducing LTSs with Puzzles}
+\newblock
+
+Whilst the definition of a labelled transition system is surprisingly
+straightforward for such a powerful formalism, getting students to
+engage with it requires some ingenuity.  Fortunately, this is equally
+straightforward by resorting to well-known recreational puzzles.
+
+\paragraph{The Man-Wolf-Goat-Cabbage Riddle}
+\newblock
+
+\begin{quote}
+\emph{A man needs to cross a river with a wolf, a goat and a cabbage.
+His boat is only large enough to carry himself and one of his three
+possessions, so he must transport these items one at a time.  However,
+if he leaves the wolf and the goat together unattended, then the wolf
+will eat the goat; similarly, if he leaves the goat and the cabbage
+together unattended, then the goat will eat the cabbage.  How can the
+man get across safely with his three items?}
+\end{quote}
+
+This riddle was posed by Alcuin of York in the 8th century, and more
+recently tackled by Homer Simpson in a 2009 episode of The Simpsons
+titled Gone Maggie Gone.
+
+This puzzle can be solved by modelling it as an LTS.  A state of the
+LTS will represent the current position (left or right bank) of the
+four entities (man, wolf, goat, cabbage); and there will be four
+actions representing the four possible actions that the man can take:
+
+\begin{itemize}
+\item $m$ = the man crosses the river on his own;
+\item $w$ = the man crosses the river with the wolf;
+\item $g$ = the man crosses the river with the goat; and
+\item $c$ = the man crosses the river with the cabbage.
+\end{itemize}
+
+\begin{center}
+~
+\begin{xy}
+*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+*=<10ex,3ex>[o][F-]{\textsc{wgc : m}}="WGC"
+\ar@/^1ex/^{m}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{mwgc :}}="MWGC"
+\ar@{<-}@/_1ex/_{m} "MWGC"
+
+\POS "MWGC"
+\ar@/^1ex/^{g}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{wc : mg}}="WC"
+\ar@{<-}@/_1ex/_{g} "WC"
+\ar@/_3ex/_{w}
+   + <-20ex,-15ex>*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+                  *=<10ex,3ex>[o][F-]{\textsc{gc : mw}}="GC"
+\ar@{<-}@/^1ex/^{w} "GC"
+\ar@/^3ex/^{c}
+   + <20ex,-15ex>*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+                 *=<10ex,3ex>[o][F-]{\textsc{wg : mc}}="WG"
+\ar@{<-}@/_1ex/_{c} "WG"
+
+\POS "WC"
+\ar@/^1ex/^{m}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{mwc : g}}="MWC"
+\ar@{<-}@/_1ex/_{m} "MWC"
+
+\POS "MWC"
+\ar@{<-}@/^1ex/^{w}
+   + <-5.5ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{c : mwg}}="C"
+\ar@/_1ex/_{w} "C"
+\ar@/^1ex/^{c}
+   + <6ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{w : mcg}}="W"
+\ar@{<-}@/_1ex/_{c} "W"
+
+\POS "C"
+\ar@/^1ex/^{g}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{mgc : w}}="MGC"
+\ar@{<-}@/_1ex/_{g} "MGC"
+
+\POS "W"
+\ar@/^1ex/^{g}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{mwg : c}}="MWG"
+\ar@{<-}@/_1ex/_{g} "MWG"
+
+\POS "MGC"
+\ar@/^1ex/^{c}
+   + <6ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{g : mwc}}="G"
+\ar@{<-}@/_1ex/_{c} "G"
+
+\POS "MWG"
+\ar@{<-}@/^1ex/^{w} "G"
+\ar@/_1ex/_{w} "G"
+
+\POS "G"
+\ar@/^1ex/^{m}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{mg : wc}}="MG"
+\ar@{<-}@/_1ex/_{m} "MG"
+
+\POS "MG"
+\ar@/^1ex/^{g}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o][F-]{\textsc{ : mwgc}}=""
+\ar@{<-}@/_1ex/_{g} ""
+
+\POS ""
+\ar@/^1ex/^{m}
+   + <0ex,-5.5ex>*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+               *=<10ex,3ex>[o][F-]{\textsc{m : wgc}}="M"
+\ar@{<-}@/_1ex/_{m} "M"
+\ar@/^3ex/^{c}
+   + <-20ex,15ex>*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+                 *=<10ex,3ex>[o][F-]{\textsc{mc : wg}}="MC"
+\ar@{<-}@/_1ex/_{c} "MC"
+\ar@/_3ex/_{w}
+   + <20ex,15ex>*=<10ex,3ex>[o]{},{*[grey]\frm{**}},
+                *=<10ex,3ex>[o][F-]{\textsc{mw : gc}}="MW"
+\ar@{<-}@/^1ex/^{w} "MW"
+
+\POS "WG"
+\ar@/^2ex/^{m} "MWG"
+\ar@{<-}@/_1ex/_{m} "MWG"
+
+\POS "GC"
+\ar@/_2ex/_{m} "MGC"
+\ar@{<-}@/^1ex/^{m} "MGC"
+
+\POS "MC"
+\ar@/^2ex/^{m} "C"
+\ar@{<-}@/_1ex/_{m} "C"
+
+\POS "MW"
+\ar@{<-}@/^1ex/^{m} "W"
+\ar@/_2ex/_{m} "W"
+\end{xy}
+~
+\end{center}
+
+The initial state is \ovalbox{MWGC :} (meaning all are on the left
+bank of the river).
+
+We wish to find a sequence of actions which will lead to the state
+\ovalbox{: MWGC} (meaning all are on the right bank of the river).
+
+However, we want to avoid going through any of the six dangerous
+states:
+
+\begin{center}
+\begin{tabular}{ccc}
+\ovalbox{WGC : M} & \ovalbox{GC : MW} & \ovalbox{WG : MC}
+\\[1ex]
+\ovalbox{MC : WG} & \ovalbox{MW : GC} & \ovalbox{M : WGC}
+\end{tabular}
+\end{center}
+There are several possibilities (all involving at least 7 crossings),
+for example
+\begin{center}
+$g$, $m$, $w$, $g$, $c$, $m$, $g$.
+\end{center}
+
+\paragraph{The Missionaries and Cannibals Riddle}
+\newblock
+\begin{quote}
+\emph{Three missionaries are travelling with three cannibals when they
+come upon a river.  They have a boat, but it can only hold two people.
+The river is filled with piranha, so they all must eventually cross in
+the boat; no one can cross the river by swimming.  The problem is:
+should the cannibals ever outnumber the missionaries on either side of
+the river, the outnumbered missionaries would be in deep trouble.
+Each missionary and each cannibal can row the boat.  How can all six
+get across the river safely?  }
+\end{quote}
+
+Similarly to the Man-Wolf-Goat-Cabbage riddle, this puzzle can also be
+solved using an LTS, as depicted in Figure~\ref{fig:MC}.
+\begin{figure}[t]
+\centering
+ ~ 
+\begin{xy}
+ *=<16ex,8ex>[o][F-]{\fb{m&m&m\\[-1ex]c&c&c} \;\wiggly \nofb{\cdot\\[-1ex]\cdot}}="33L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{m&m&m\\[-1ex]c&c} \;\wiggly \nofb{\cdot\\[-1ex]c}}="32L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{m&m&m\\[-1ex]c} \;\wiggly \nofb{\cdot\\[-1ex]c&c}}="31L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{m&m\\[-1ex]c&c} \;\wiggly \nofb{m\\[-1ex]c}}="22L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{m\\[-1ex]c} \;\wiggly \nofb{m&m\\[-1ex]c&c}}="11L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{\cdot\\[-1ex]c&c&c} \;\wiggly \nofb{m&m&m\\[-1ex]\cdot}}="03L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{\cdot\\[-1ex]c&c} \;\wiggly \nofb{m&m&m\\[-1ex]c}}="02L"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\fb{\cdot\\[-1ex]c} \;\wiggly \nofb{m&m&m\\[-1ex]c&c}}="01L"
+\POS "33L"
+ + <45ex,4ex>
+ *=<16ex,8ex>[o][F-]{\nofb{m&m&m\\[-1ex]c&c} \;\wiggly \fb{\cdot\\[-1ex]c}}="32R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{m&m&m\\[-1ex]c} \;\wiggly \fb{\cdot\\[-1ex]c&c}}="31R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{m&m&m\\[-1ex]\cdot} \;\wiggly \fb{\cdot\\[-1ex]c&c&c}}="30R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{m&m\\[-1ex]c&c} \;\wiggly \fb{m\\[-1ex]c}}="22R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{m\\[-1ex]c} \;\wiggly \fb{m&m\\[-1ex]c&c}}="11R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{\cdot\\[-1ex]c&c} \;\wiggly \fb{m&m&m\\[-1ex]c}}="02R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{\cdot\\[-1ex]c} \;\wiggly \fb{m&m&m\\[-1ex]c&c}}="01R"
+ + <0ex,-9ex>
+ *=<16ex,8ex>[o][F-]{\nofb{\cdot\\[-1ex]\cdot} \;\wiggly \fb{m&m&m\\[-1ex]c&c&c}}="00R"
+
+\POS "33L"
+  \ar@{<->}@/^5ex/^{c} "32R"
+  \ar@{<->}@/^5ex/^{cc} "31R"
+  \ar@{<->}@/^2ex/^{mc} "22R"
+\POS "32L"
+  \ar@{<->}@/^5ex/^{c} "31R"
+  \ar@{<->}@/_1ex/^{cc} "30R"
+  \ar@{<->}@/_3ex/^{m} "22R"
+\POS "31L"
+  \ar@{<->}@/^1ex/^{c} "30R"
+  \ar@{<->}@/^2ex/^{mm} "11R"
+\POS "22L"
+  \ar@{<->}@/^1ex/^{mc} "11R"
+  \ar@{<->}@/^1ex/^{mm} "02R"
+\POS "11L"
+  \ar@{<->}@/^5ex/^{m} "01R"
+  \ar@{<->}@/_1ex/^{mc} "00R"
+\POS "03L"
+  \ar@{<->}@/^1ex/^{c} "02R"
+  \ar@{<->}@/_5ex/^{cc} "01R"
+\POS "02L"
+  \ar@{<->}@/_4ex/^{c} "01R"
+  \ar@{<->}@/_3ex/^{cc} "00R"
+\POS "01L"
+  \ar@{<->}@/_4ex/^{c} "00R"
+\end{xy}
+ ~ 
+\caption{The Missionaries and Cannibals riddle as an LTS.}
+\label{fig:MC}
+\end{figure}
+
+Each state of the LTS records the positions of the people (which banks
+they are on) and which side holds the boat.  The groups on the two
+banks are depicted side-by-side divided by wiggly lines representing
+the river, with the group holding the boat enclosed in parentheses. We
+only consider the safe states where the cannibals do not outnumber the
+missionaries.
+
+There are five possible actions:
+
+\begin{itemize}
+\item $m$ (a missionary crosses alone);
+\item $mm$ (two missionaries cross together);
+\item $c$ (a cannibal crosses alone);
+\item $cc$ (two cannibals cross together); and
+\item $mc$ (a missionary and a cannibal cross together).
+\end{itemize}
+
+Notice that all of the transitions are drawn bi-directionally, as
+every transition can clearly be reversed.
+
+The group start in the top-left state in which the whole group is on
+the left bank, and they wish to get to the bottom-right state in which
+they are all on the right bank.  It is not hard to find a such path
+through the LTS which involves $11$ crossings.
+
+\paragraph{The Water Jugs Riddle}
+\newblock
+
+In the 1995 film {Die Hard: With a Vengeance}, New York Detective John
+McClane (played by Bruce Willis) and Harlem dry cleaner Zeus Carver
+(played by Samuel L. Jackson) had to solve the following problem in
+order to prevent a bomb from exploding at a public fountain.
+
+\begin{quote}
+\emph{Given only a five-gallon jug and a three-gallon jug, neither
+with any markings on them, they had to fill the larger jug with
+\emph{exactly} four gallons of water from the fountain, and place it
+onto a scale in order to stop the bomb's timer and prevent disaster.
+}
+\end{quote}
+
+How did they manage this feat?
+
+\vspace{3ex}
+
+This riddle was posed by Abbot Albert in the 13th Century.
+
+A state of the system underlying this riddle consists of a pair of
+integers $(i,j)$ with $0{\leq}i{\leq}5$ and $0{\leq}j{\leq}3$,
+representing the volume of water in the 5-gallon and 3-gallon jugs $A$
+and $B$, respectively.  The initial state is $(0,0)$ and the final
+state you wish to reach is $(4,0)$.
+
+There are six moves possible from a given state $(i,j)$:
+\newcommand{\lgt}[1]{\stackrel{#1}{\mbox{\large $\longrightarrow$}}}
+
+\begin{center}
+\small
+$\begin{array}{llll}
+$(i,j)$ & \lgt{\textit{\small fillA}}
+        & (5,j) & \bigg(\textit{if } i{=}0\bigg) \\[1ex]
+$(i,j)$ & \lgt{\textit{\small fillB}}
+        & (i,3) & \bigg(\textit{if } j{=}0\bigg) \\[1ex]
+$(i,j)$ & \lgt{\textit{\small emptyA}}
+        & (0,j) & \bigg(\textit{if } i{>}0\bigg) \\[1ex]
+$(i,j)$ & \lgt{\textit{\small emptyB}}
+        & (i,0) & \bigg(\textit{if } j{>}0\bigg) \\[1ex]
+$(i,j)$ & \lgt{\textit{\small AtoB}}
+        & \bigg(\max(0,i{+}j{-}3),\min(3,i{+}j)\bigg)
+        & \bigg(\textit{if } i{>}0 \textit{ and } j{<}3\bigg) \\[1ex]
+$(i,j)$ & \lgt{\textit{\small BtoA}}
+        & \bigg(\min(5,i{+}j),\max(0,i{+}j{-}5)\bigg)
+        & \bigg(\textit{if } i{<}5 \textit{ and } j{>}0\bigg) \\[1ex]
+\end{array}$
+\end{center}
+Drawing out the LTS, we get the following $7$-step solution:
+\begin{quote}
+$(0,0) \lgt{\textit{\small fillA}} (5,0) \lgt{\textit{\small AtoB}} (2,3)
+       \lgt{\textit{\small emptyB}} (2,0) \lgt{\textit{\small AtoB}} (0,2)$
+
+\hfill
+$\lgt{\textit{\small fillA}} (5,2) \lgt{\textit{\small AtoB}} (4,3)
+       \lgt{\textit{\small emptyB}} (4,0)$.
+\end{quote}
+
+These simple riddles and puzzles allow students to easily grasp and
+understand the powerful concept of labelled transition systems. After
+seeing only a few examples, they are able to model straightforward
+systems by themselves using LTSs. Once an intuitive understanding has
+been established, the task of understanding the mathematics behind
+LTSs becomes less foreboding.
+
+\section{Bisimulation for Dummies}
+
+Beyond having a formalism for representing and simulating (the
+behaviour of) a system, we want to be able to determine if the system
+is correct.  In its most basic form, this amounts to determining if
+the system matches its specification, where we assume that both the
+system and its specification are given as states of some LTS.  For
+example, consider the two vending machines $V_1$ and $V_2$ depicted
+below, where $V_1$ is taken to represent the specification of the
+vending machine while $V_2$ is taken to represent its implementation.
+
+\begin{center}
+\parbox{0.3\textwidth}{
+\setlength{\unitlength}{0.0004\textwidth}
+\begin{picture}(500,650)(0,0)
+\Thicklines
+
+\path(0,0)(0,600)(500,600)(500,0)(0,0)
+
+\thinlines
+
+\put(100,490){\circle*{25}}
+\put(400,490){\circle*{25}}
+\put(100,490){\circle{60}}
+\put(400,490){\circle{60}}
+
+\path(230,325)(230,450)(270,450)(270,325)(230,325)
+\path(100,100)(100,250)(400,250)(400,100)(100,100)
+\path(125,125)(125,225)(375,225)(375,125)(125,125)
+\path(100,100)(125,125) \path(100,250)(125,225)
+\path(400,250)(375,225) \path(400,100)(375,125)
+
+\put(100,550){\makebox(0,0){\tiny \p{coffee}}}
+\put(400,550){\makebox(0,0){\tiny \p{tea}}}
+\put(250,290){\makebox(0,0){\tiny \p{10p}}}
+\put(250,70){\makebox(0,0){\tiny \p{collect}}}
+
+\end{picture}
+}
+\parbox{0.45\textwidth}{
+\setlength{\unitlength}{0.00040\textwidth}
+\p{\footnotesize
+\psset{unit=0.065\textwidth,arrowsize=0.20,arcangle=15,nrot=:U,labelsep=0.05}
+\begin{pspicture}(-0.5,-0.5)(6.4,1.6)%\psgrid
+\cnode(0.0,0.5){0.3}{1}
+\cnode(2.0,1.0){0.3}{2}
+\cnode(4.0,1.0){0.3}{3}
+\cnode(6.0,0.5){0.3}{4}
+\rput(0.0,0.5){$V_1$}
+\ncarc{->}{1}{2}\naput{$\p{10p}$}
+\ncarc{->}{2}{3}\naput{$\p{10p}$}
+\ncarc{->}{3}{4}\naput{$\p{coffee}$}
+\ncarc[arcangle=-10]{->}{3}{4}\nbput{$\p{tea}$}
+\ncarc[arcangle=-20]{<-}{1}{4}\naput{$\p{collect}$}
+\end{pspicture}
+}
+\setlength{\unitlength}{0.00040\textwidth}
+\p{\footnotesize
+\psset{unit=0.065\textwidth,arrowsize=0.20,arcangle=15,nrot=:U,labelsep=0.05}
+\begin{pspicture}(-0.5,-0.8)(6.4,1.4)%\psgrid
+\cnode(0.0,0.5){0.3}{1}
+\cnode(2.0,0.5){0.3}{2}
+\cnode(4.0,0.9){0.3}{3C}
+\cnode(4.0,0.1){0.3}{3T}
+\cnode(6.0,0.5){0.3}{4}
+\rput(0.0,0.5){$V_2$}
+\ncarc{->}{1}{2}\naput{$\p{10p}$}
+\ncarc{->}{2}{3C}\naput{$\p{10p}$}
+\ncarc[arcangle=-15]{->}{2}{3T}\naput{$\p{10p}$}
+\ncarc{->}{3C}{4}\naput{$\p{coffee}$}
+\ncarc[arcangle=-15]{->}{3T}{4}\nbput{$\p{tea}$}
+\ncarc[arcangle=-60,ncurv=0.5]{<-}{1}{4}\naput{$\p{collect}$}
+%\nccurve[angleA=250,angleB=-45,ncurv=0.3]{->}{4}{1}\nbput{$\p{collect}$}
+\end{pspicture}
+}}
+\end{center}
+
+Clearly the behaviour of \bm{V_1} is somehow different from the
+behaviour of \bm{V_2}: after \textit{twice} inserting a \p{10p} coin
+into \bm{V_1}, we are \textit{guaranteed} to be \textit{able} to press
+the \p{coffee} button; this is \textit{not} true of \bm{V_2}.  The
+question is: \emph{How do we formally distinguish between processes?}
+
+\paragraph{The formal definition of bisimilarity}
+\newblock
+
+A traditional approach to this question relies on
+determining if these two states are related by
+a \emph{bisimulation relation} $R$ as defined as follows.
+\begin{quote}
+\emph{A binary relation $R$ over states of an LTS
+is a bisimulation relation if, and only if,
+whenever $(x,y) \in R$:
+\begin{itemize}
+\item
+if $x \gta x'$ for some $x'$ and $a$,
+then $y \gta y'$ for some $y'$ such that $(x',y') \in R$;
+and
+\item
+if $y \gta y'$ for some $y'$ and $a$,
+then $x \gta x'$ for some $x'$ such that $(x',y') \in R$.
+\end{itemize}
+}
+\end{quote}
+
+Simple inductive definitions already represent a major challenge for
+undergraduate university students; so it is no surprise that this
+coinductive definition of a bisimulation relation is incomprehensible
+even to some of the brightest postgraduate students -- at least on
+their first encounter with it.  However, there is a straightforward
+way to explain the idea of bisimilarity to first-year students -- a
+way which they can readily grasp and are happy to explore and, indeed,
+play with.  The approach is based on the following game.
+
+\paragraph{The Copy-Cat Game}
+\newblock
+
+This game is played between two players, typically referred to as
+Alice and Bob.  We start by placing tokens on two states of an LTS,
+and then proceed as follows.
+
+\begin{enumerate}
+\item
+The {first} player (Alice) chooses one of the two tokens,
+and moves it forward along an arrow to another state;
+if this is impossible (that is, if there are no arrows
+leading out of either node on which the tokens sit), then
+the second player (Bob) is declared to be the winner.
+\item The {second} player (Bob) must move the \emph{other} token
+  forward along an arrow which has \textit{the same label} as the
+  arrow used by the first player; if this is impossible, then the
+  first player (Alice) is declared to be the winner.
+\end{enumerate}
+
+This exchange of moves is repeated for as long as neither player gets
+stuck.  If the second player ever gets stuck, then the first player is
+declared to be the winner; otherwise the second player is declared to
+be the winner (in particular, if the game goes on forever).
+
+Alice, therefore, wants to show that the two states holding tokens are
+somehow different, in that there is something that can happen from one
+of the two states which cannot happen from the other.  Bob, on the
+other hand, wants to show that the two states are the same: that
+whatever might happen from one of the two states can be copied by the
+other state.
+
+It is easy to argue that two states should be considered equivalent
+exactly when Bob has a winning strategy in the Copy-Cat Game starting
+with the tokens on the two states in question; and indeed this is
+taken to be the definition of when two states are equal, specifically,
+when an implementation matches its specification.
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+%\newpage
+%%%%%%%%%%%
+%%%%%%%%%%%
+
+As an example, consider playing the game on the following LTS.
+
+\begin{center}
+\psset{unit=0.08\textwidth,arrowsize=0.15,arcangle=15,nrot=:U,labelsep=0.05}
+\begin{pspicture}(-2.3,-1.0)(6.3,1.0)%\psgrid
+\cnode(-2,0){0.3}{U}
+\rput(-2,0){\large U}
+\cnode(2,0){0.3}{Z}
+\rput(2,0){\large Z}
+\cnode(4,0){0.3}{Y}
+\rput(4,0){\large Y}
+\cnode(6,0){0.3}{X}
+\rput(6,0){\large X}
+\cnode(0,0.8){0.3}{V}
+\rput(0,0.8){\large V}
+\cnode(0,-0.8){0.3}{W}
+\rput(0,-0.8){\large W}
+\ncarc[arcangle=-10]{->}{U}{W}\naput{\large $a$}
+\ncarc[arcangle=10]{->}{U}{V}\naput{\large $a$}
+\ncarc[arcangle=-10]{->}{W}{Z}\naput{\large $c$}
+\ncarc[arcangle=10]{->}{V}{Z}\naput{\large $b$}
+\ncarc[arcangle=35]{<-}{Z}{Y}\naput{\large $c$}
+\ncarc[arcangle=-35]{<-}{Z}{Y}\nbput{\large $b$}
+\ncarc[arcangle=0]{<-}{Y}{X}\naput{\large $a$}
+\end{pspicture}
+\end{center}
+Starting with tokens on states $U$ and $X$,
+the \emph{first} player (Alice) has a winning strategy:
+\begin{itemize}
+\item
+Alice can move the token on $U$
+along the $a$-transition to $V$.
+\item
+Bob must match this by
+moving the token on $X$ along the $a$-transition to $Y$.
+\item
+Alice can then move the token on $Y$
+along the $c$-transition to $Z$.
+\item
+Bob will be stuck, as there is no $c$-transition from $V$.
+\end{itemize}
+
+This example is a simplified version of the vending machine example;
+and a straightforward adaptation of the winning strategy for Alice
+will work in the game starting with the tokens on the states $V_1$ and
+$V_2$.  We thus have an argument as to why the two vending machines
+are different.
+
+\paragraph{Relating winning strategies to bisimilarity}
+\newblock
+
+Whilst this notion of equality between states is particularly simple
+and even entertaining to explore, it coincides precisely with the
+complicated coinductive definition of when two states are bisimilar.
+Furthermore, seeing this is the case is almost equally
+straightforward.
+
+\begin{itemize}
+\item
+Suppose we play the Copy-Cat Game starting with the tokens on two
+states $E$ and $F$ which are related by some bisimulation relation
+$R$.  It is easy to see that Bob has a winning strategy: whatever move
+Alice makes, by the definition of a bisimulation relation, Bob will be
+able to copy this move in such a way that the two tokens will end up
+on states $E'$ and $F'$ which are again related by $R$; and Bob can
+keep repeating this for as long as the game lasts, meaning that he
+wins the game.
+\item
+Suppose now that $R$ is the set of pairs of states of an LTS from
+which Bob has a winning strategy in the Copy-Cat Game.  It is easy to
+see that this is a bisimulation relation: suppose that $(x,y) \in R$:
+\begin{itemize}
+\item
+if $x \gta x'$ for some $x'$ and $a$, then taking this to be a move by
+Alice in the Copy-Cat Game, we let $y \gta y'$ be a response by Bob
+using his winning strategy; this would mean that Bob still has a
+winning strategy from the resulting pair of states, that is $(x',y')
+\in R$;
+\item
+if $y \gta y'$ for some $y'$ and $a$, then taking this to be a move by
+Alice in the Copy-Cat Game, we let $x \gta x'$ be a response by Bob
+using his winning strategy; this would mean that Bob still has a
+winning strategy from the resulting pair of states, that is $(x',y')
+\in R$.
+\end{itemize}
+\end{itemize}
+
+We have thus taken a concept which baffles postgraduate research
+students, and presented it in a way which is well within the grasp of
+first-year undergraduate students.
+
+\paragraph{Determining who has the winning strategy}
+\newblock
+
+Once the notion of equivalence is understood in terms of winning
+strategies in the Copy-Cat Game, the question then arises as to how to
+determine if two particular states are equivalent, ie, if Bob has a
+winning strategy starting with the tokens on the two given states.
+This isn't generally a simple prospect; Games like Chess and Go are
+notoriously difficult to play perfectly, as you can only look ahead a
+few moves before getting caught up in the vast number of positions
+into which the game may evolve.
+
+Here again, though, we have a straightforward way to determine when
+two states are equivalent.  Suppose we could paint the states of an
+LTS in such a way that any two states which are equivalent -- that is,
+from which Bob has a winning strategy -- are painted the same colour.
+
+The following property would then hold.
+
+\begin{quote}
+\emph{If any state with some colour $C$
+has a transition leading out of it
+into a state with some colour $C'$,
+then \emph{every} state with colour $C$
+has an identically-labelled transition leading out of it
+into a state coloured $C'$.}
+\end{quote}
+
+That is, if two tokens are on like-coloured states (meaning that Bob
+has a winning strategy) then no matter what move Alice makes, Bob can
+respond in such a way as to keep the tokens on like-coloured states
+(ie, a position from which he still has a winning strategy).  We refer
+to such a special colouring of the states a \emph{game colouring}.
+
+To demonstrate, consider the following LTS.
+\begin{center}
+\setlength{\unitlength}{0.03mm}
+\begin{picture}(1460,1500)(-30,50)
+\linethickness{0.25pt}
+\gameboard
+\end{picture}
+\end{center}
+
+At the moment all states are coloured white, and we might consider
+whether this is a valid game colouring.  It becomes readily apparent
+that it is not, as the white state $4$ can make a $b$-transition to
+the white state $5$ whereas none of the other white states ($1$, $2$,
+$3$, $5$ and $6$) can do likewise.  In fact, in any game colouring,
+the state $4$ must have a different colour from $1$, $2$, $3$, $5$ and
+$6$.  Hence we paint it a different colour from white; in order to
+present this example in black-and-white, we shall paint the state $4$
+with the colour ``checkered.''
+
+\begin{center}
+\setlength{\unitlength}{0.03mm}
+\begin{picture}(1460,1500)(-30,50)
+\linethickness{0.25pt}
+\gameboard
+\put(780,490){\line(0,1){120}}
+\put(760,470){\line(0,1){160}}
+\put(740,458){\line(0,1){184}}
+\put(720,452){\line(0,1){196}}
+\put(700,450){\line(0,1){200}}
+\put(680,452){\line(0,1){196}}
+\put(660,458){\line(0,1){184}}
+\put(640,470){\line(0,1){160}}
+\put(620,490){\line(0,1){120}}
+
+\put(640,630){\line(1,0){120}}
+\put(620,610){\line(1,0){160}}
+\put(608,590){\line(1,0){184}}
+\put(602,570){\line(1,0){196}}
+\put(600,550){\line(1,0){200}}
+\put(602,530){\line(1,0){196}}
+\put(608,510){\line(1,0){184}}
+\put(620,490){\line(1,0){160}}
+\put(640,470){\line(1,0){120}}
+
+\end{picture}
+\end{center}
+
+We again consider whether this is now a valid game colouring.  Again
+it becomes apparent that it is not, as the white states $3$ and $6$
+have $a$-transitions to a checkered state, whereas none of the other
+white states $1$, $2$ and $5$ do.  And in any game colouring, the
+states $3$ and $6$ must have a different colour from $1$, $2$ and $5$.
+Hence we paint these a different colour from white and checkered; we
+shall choose the colour ``swirly.''
+
+\begin{center}
+\setlength{\unitlength}{0.03mm}
+\begin{picture}(1460,1500)(-30,50)
+\linethickness{0.25pt}
+\gameboard
+\put(780,490){\line(0,1){120}}
+\put(760,470){\line(0,1){160}}
+\put(740,458){\line(0,1){184}}
+\put(720,452){\line(0,1){196}}
+\put(700,450){\line(0,1){200}}
+\put(680,452){\line(0,1){196}}
+\put(660,458){\line(0,1){184}}
+\put(640,470){\line(0,1){160}}
+\put(620,490){\line(0,1){120}}
+
+\put(640,630){\line(1,0){120}}
+\put(620,610){\line(1,0){160}}
+\put(608,590){\line(1,0){184}}
+\put(602,570){\line(1,0){196}}
+\put(600,550){\line(1,0){200}}
+\put(602,530){\line(1,0){196}}
+\put(608,510){\line(1,0){184}}
+\put(620,490){\line(1,0){160}}
+\put(640,470){\line(1,0){120}}
+
+\put(700,1050){\circle{40}}
+\put(700,1050){\circle{80}}
+\put(700,1050){\circle{120}}
+\put(700,1050){\circle{160}}
+\put(1200,200){\circle{40}}
+\put(1200,200){\circle{80}}
+\put(1200,200){\circle{120}}
+\put(1200,200){\circle{160}}
+\end{picture}
+\end{center}
+
+We again consider whether this is now a valid game colouring.  This
+time we find that it is, as every state can do exactly the same ting
+as every other state of the same colour:
+
+\begin{itemize}
+\item
+every white state has an $a$-transition to a white state
+and an $a$-transition to a swirly state;
+\item
+every swirly state has an $a$-transition to a swirly state
+and an $a$-transition to a checkered state;
+\item
+every checkered state has a $b$-transition to a white state.
+\end{itemize}
+
+At this point we have a complete understanding of the game, and can
+say with certainty which states are equivalent to each other.  This is
+an exercise which first-year students can happily carry out on
+arbitrarily-complicated LTSs, which again gives testament to the
+effectiveness of using games to great success in imparting difficult
+theoretical concepts to first-year students -- in this case the
+concept of partition refinement.
+
+%While students take turns playing each other in the Copy-Cat game they
+%develop an intuitive understanding of winning strategies: that the
+%first player must play correctly, and the second player -- no matter
+%how well they play -- can never win. They even have fun doing it! This
+%allows them to argue when two systems are different (or the same) and
+%even paves the way for other more advanced formal verification
+%techniques such as observational equivalence.
+
+\section{Conclusion}
+
+Students can quickly and easily understand the modelling of computing
+systems if it is done in a suitable way. Starting with some formal
+semantics and real world examples, in our experience, makes the task
+very daunting, difficult and generally unpleasant for
+students. However, appealing to their existing understand of how the
+world works, using puzzles as a medium, students can quickly become
+comfortable using mathematical concepts such as LTSs. A similar lesson
+is learnt when it comes to teaching verification: starting with the
+formal definition of bisimulation (or similar) is an uphill battle
+from the start, whereas starting from games like the Copy-Cat Game,
+life is much easier for everyone.
+
+We have used these approaches for over a decade to successfully teach
+the modelling and verification of computing systems to first-year
+students of our undergraduate course. This has eventually lead to the
+production of our new modern textbook, to be published by Springer in
+Autumn 2013, aimed at teaching first-year undergraduate students the
+essential mathematics and modelling techniques for computing systems
+in a novel and relatively light-weight way.
 
 
 %\section*{Acknowledgements}
